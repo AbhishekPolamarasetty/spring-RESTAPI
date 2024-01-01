@@ -1,0 +1,5 @@
+package com.abhi.Airport.Service;
+
+public interface AirportService {
+
+}

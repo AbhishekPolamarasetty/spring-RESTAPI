@@ -1,0 +1,8 @@
+package com.abhi.Airport.Service;
+
+import java.util.List;
+
+
+public class AirportServiceImplementation implements AirportService{
+	
+}

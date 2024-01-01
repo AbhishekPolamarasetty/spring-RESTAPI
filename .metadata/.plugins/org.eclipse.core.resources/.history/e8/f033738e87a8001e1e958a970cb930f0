@@ -1,0 +1,5 @@
+package com.restwithmysql.Repository;
+
+public interface CloudVendorRepository {
+
+}

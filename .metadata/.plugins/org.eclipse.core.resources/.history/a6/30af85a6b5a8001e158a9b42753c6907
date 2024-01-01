@@ -1,0 +1,53 @@
+package com.abhi.Airport.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.abhi.Airport.Entity.Airport;
+import com.abhi.Airport.Repository.AirportRepository;
+
+@Service
+public class AirportServiceImplementation implements AirportService{
+	
+	
+	
+	AirportRepository airportRepository;
+	
+	public AirportServiceImplementation(AirportRepository airportRepository) {
+		this.airportRepository = airportRepository;
+	}
+	
+	
+	@Override
+	public List<Airport> getAllAirports(){
+		return airportRepository.findAll();
+	}
+	
+	@Override
+	public String createAirport(Airport airport) {
+		airportRepository.save(airport);
+		return "Success";
+	}
+	
+
+	@Override
+	public Airport getAirport(String IATACODE) {
+		if(airportRepository.findById(IATACODE).isEmpty())
+			throw new AirportNotFoundException("Requested cloud vendor does not exist");
+		return airportRepository.findById(IATACODE).get();
+	}
+	
+	@Override
+	public String updateAirport(Airport airport) {
+		airportRepository.save(airport);
+		return "updated";
+	}
+	
+	@Override
+	public String deleteAirport(String airportIATACODE) {
+		airportRepository.deleteById(airportIATACODE);
+		return null;
+	}
+	
+}

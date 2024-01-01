@@ -1,0 +1,25 @@
+package com.abhi.Airports.Entity;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+//@Getter
+//@Setter
+@Data
+public class Airport {
+	@Getter
+	@JsonProperty("IATA_code")
+	private String IATACode;
+    @Getter
+	@JsonProperty("airport_name")
+	private String airportName;
+    @Getter
+	@JsonProperty("city_name")
+	private String cityName;
+
+	// Constructor
+	public Airport() {
+	}
+}

@@ -1,0 +1,8 @@
+package com.abhi.vendor.restdemo;
+
+public class CloudVendor {
+	private String vendorId;
+	private String vendorName;
+	private String vendorAddress;
+	private String vendorPhoneNumber;
+}

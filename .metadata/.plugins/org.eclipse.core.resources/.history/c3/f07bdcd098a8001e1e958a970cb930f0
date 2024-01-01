@@ -1,0 +1,5 @@
+package com.abhi.Airports.Exception;
+
+public class AirportNotFoundException {
+
+}

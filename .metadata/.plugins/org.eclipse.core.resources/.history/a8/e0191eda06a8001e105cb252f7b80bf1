@@ -1,0 +1,53 @@
+package com.abhi.Airports.Service;
+import com.abhi.Airports.Entity.Airport;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+public class AirportService {
+
+    // Mocked data for illustration
+    private final List<Airport> airports = List.of(
+            new Airport("AAA", "Airport A", "City A"),
+            new Airport("BBB", "Airport B", "City B")
+            // Add more airports as needed
+    );
+
+    public List<Airport> getAllAirports() {
+        return airports;
+    }
+
+    public Airport createAirport(Airport airport) {
+        // Add logic to persist the new airport
+        airports.add(airport);
+        return airport;
+    }
+
+    public Airport getAirportById(String airportId) {
+        // Add logic to fetch airport by ID
+        // For demonstration, iterating through the list
+        for (Airport airport : airports) {
+            if (airport.getIATACode().equals(airportId)) {
+                return airport;
+            }
+        }
+        return null; // Return appropriate response for non-existing airport
+    }
+
+    public Airport updateAirport(String airportId, Airport updatedAirport) {
+        // Add logic to update the existing airport
+        for (Airport airport : airports) {
+            if (airport.getIATACode().equals(airportId)) {
+                airport.setAirportName(updatedAirport.getAirportName());
+                airport.setCityName(updatedAirport.getCityName());
+                return airport;
+            }
+        }
+        return null; // Return appropriate response for non-existing airport
+    }
+
+    public void deleteAirport(String airportId) {
+        // Add logic to delete the airport
+        airports.removeIf(airport -> airport.getIATACode().equals(airportId));
+    }
+}

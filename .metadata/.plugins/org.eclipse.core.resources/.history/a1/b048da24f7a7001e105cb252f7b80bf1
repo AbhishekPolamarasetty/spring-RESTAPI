@@ -1,0 +1,9 @@
+package com.example.demo;
+import lambok.getter;
+@Getter
+@Setter
+public class Triangle {
+	public void draw() {
+		System.out.println("triangle drawn");
+	}
+}
