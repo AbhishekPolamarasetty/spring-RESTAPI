@@ -37,7 +37,6 @@ public class AirportController{
 	@GetMapping
 	public List<Airport> getAllAirportDetails() {
 		logger.info("Fetching all airport details.");
-		logger.debug("Fetching all airport details - entering the method.");
 		return airportService.getAllAirports();
 	}
 	

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.abhi.Airport.Entity.Airport;
 import com.abhi.Airport.Exception.AirportNotFoundException;
+import com.abhi.Airport.Exception.ResourceConflictException;
 import com.abhi.Airport.Repository.AirportRepository;
 
 
@@ -32,23 +33,32 @@ public class AirportServiceImplementation implements AirportService{
 	
 	@Override
 	public String createAirport(Airport airport) {
-		logger.info("creating all airports from the repository.");
-		airportRepository.save(airport);
-		return "Success";
+		   if (airportRepository.existsById(airport.getIATACODE())) {
+			   logger.error("Airport is already Exists");
+	            throw new ResourceConflictException("Airport with IATA code already exists");
+	        }
+
+	        // Create the airport as it doesn't exist
+	        logger.info("Creating airport...");
+	        airportRepository.save(airport);
+	        return "Success";
 	}
 	
 
 	@Override
 	public Airport getAirport(String IATACODE) {
-		if(airportRepository.findById(IATACODE).isEmpty())
-			throw new AirportNotFoundException("Requested cloud vendor does not exist");
-		logger.info("Fetching specific airport from the repository.");
-		return airportRepository.findById(IATACODE).get();
+		if (airportRepository.findById(IATACODE).isEmpty()) {
+	        logger.error("Requested airport does not exist for IATACODE: {}", IATACODE);
+	        throw new AirportNotFoundException("Requested airport does not exist");
+	    }
+
+	    logger.info("Fetching specific airport from the repository.");
+	    return airportRepository.findById(IATACODE).get();
 	}
 	
 	@Override
 	public String updateAirport(Airport airport) {
-		logger.info("updating specific airport from the repository.");
+		logger.info("updating specific airport ");
 		airportRepository.save(airport);
 		return "updated";
 	}

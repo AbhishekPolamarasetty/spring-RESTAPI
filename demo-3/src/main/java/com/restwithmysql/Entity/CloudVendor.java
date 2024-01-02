@@ -1,5 +1,7 @@
 package com.restwithmysql.Entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -12,9 +14,13 @@ import lombok.Setter;
 @Setter
 public class CloudVendor {
 	@Id
+	@JsonProperty("vendor_Id")
 	private String vendorId;
+	@JsonProperty("vendor_name")
 	private String vendorName;
+	@JsonProperty("vendor_address")
 	private String vendorAddress;
+	@JsonProperty("vendor_phone")
 	private String vendorPhoneNumber;
 	
 	public CloudVendor() {

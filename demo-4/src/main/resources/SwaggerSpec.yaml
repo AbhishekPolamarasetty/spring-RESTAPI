@@ -1,0 +1,95 @@
+swagger: "2.0"
+info:
+  description: "Airport Information API"
+  version: "1.0.0"
+  title: "Airports API"
+  contact:
+    email: "abhishek_pola@thbs.com"
+host: "localhost:11478"
+schemes:
+  - "http"
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /airports:
+    get:
+      summary: "Get all airports"
+      description: "Retrieve a list of all airports"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "object"
+            properties:
+              airports:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Airport"
+    post:
+      summary: "Create a new airport"
+      description: "Add a new airport to the list"
+      parameters:
+        - name: "Airport"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Airport"
+      responses:
+        200:
+          description: "Airport created successfully"
+  /airports/{airportId}:
+    get:
+      summary: "Get airport by ID"
+      description: "Retrieve details of a specific airport"
+      parameters:
+        - name: "airportId"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Airport"
+    put:
+      summary: "Update airport by ID"
+      description: "Modify details of a specific airport"
+      parameters:
+        - name: "airportId"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "Airport"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Airport"
+      responses:
+        200:
+          description: "Airport updated successfully"
+    delete:
+      summary: "Delete airport by ID"
+      description: "Remove a specific airport from the list"
+      parameters:
+        - name: "airportId"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "Airport deleted successfully"
+definitions:
+  Airport:
+    type: "object"
+    properties:
+      IATA_code:
+        type: "string"
+        description: "IATA code of the airport"
+      airport_name:
+        type: "string"
+        description: "Name of the airport"
+      city_name:
+        type: "string"
+        description: "Name of the city where the airport is located"

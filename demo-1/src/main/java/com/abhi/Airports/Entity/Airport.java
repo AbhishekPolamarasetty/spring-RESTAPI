@@ -32,4 +32,5 @@ public class Airport {
         this.airportName = airportName;
         this.cityName = cityName;
     }
+
 }
