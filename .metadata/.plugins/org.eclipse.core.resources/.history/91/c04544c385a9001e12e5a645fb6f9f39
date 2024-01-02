@@ -1,0 +1,29 @@
+
+server.port=11478
+ 
+spring.datasource.url=jdbc:h2:file:C:\\Users\\pashe\\Spring
+#spring.datasource.url=jdbc:h2:tcp://localhost/~/test
+
+#spring.datasource.url=jdbc:h2:mem:TEST
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=abhishek
+spring.datasource.password=abhi
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+ 
+spring.jpa.show-sql=true
+#spring.jpa.hibernate.ddl-auto=create
+spring.jpa.hibernate.ddl-auto=update
+ 
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2
+ 
+spring.h2.console.settings.trace=false
+spring.h2.console.settings.web-allow-others=false
+#logging.level.org.springframework.web=DEBUG
+logging.level.org.hibernate=DEBUG
+#logging.level.com.abhi.Airport.Controller=DEBUG
+server.error.whitelabel.enabled=false
+# for changing the color for the logs 
+spring.output.ansi.enabled=always   
+#specifying the logger file where all logs are stored
+logging.file.name= loggers.log  

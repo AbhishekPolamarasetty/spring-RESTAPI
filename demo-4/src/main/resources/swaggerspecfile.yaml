@@ -1,0 +1,181 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+  - url: http://localhost:11478
+    description: Generated server url
+paths:
+  "/airports/{IATACODE}":
+    get:
+      tags:
+        - airport-controller
+      operationId: getAirportDetails
+      parameters:
+        - name: IATACODE
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Airport'
+    put:
+      tags:
+        - airport-controller
+      operationId: updateAirportDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Airport'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+        - airport-controller
+      operationId: deleteAirportDetails
+      parameters:
+        - name: IATACODE
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  "/airports":
+    get:
+      tags:
+        - airport-controller
+      operationId: getAllAirportDetails
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+    post:
+      tags:
+        - airport-controller
+      operationId: createAirportDetails
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Airport'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  "/customerror":
+    get:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    put:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error_3
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    post:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error_2
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    delete:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error_5
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    options:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error_6
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    head:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error_1
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+    patch:
+      tags:
+        - custom-error-controller
+      operationId: handle404Error_4
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+components:
+  schemas:
+    Airport:
+      type: object
+      properties:
+        IATA_code:
+          type: string
+        airport_name:
+          type: string
+        city_name:
+          type: string
+ 

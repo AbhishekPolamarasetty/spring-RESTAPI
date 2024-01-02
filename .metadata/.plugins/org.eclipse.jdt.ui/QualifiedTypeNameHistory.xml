@@ -32,11 +32,11 @@
     <fullyQualifiedTypeName name="com.abhi.Airport.Entity.Airport"/>
     <fullyQualifiedTypeName name="com.abhi.Airport.Repository.AirportRepository"/>
     <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="com.abhi.Airport.Exception.AirportNotFoundException"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ControllerAdvice"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
     <fullyQualifiedTypeName name="lombok.Getter"/>
     <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
     <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
     <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
+    <fullyQualifiedTypeName name="com.abhi.Airport.Exception.AirportNotFoundException"/>
 </qualifiedTypeNameHistroy>

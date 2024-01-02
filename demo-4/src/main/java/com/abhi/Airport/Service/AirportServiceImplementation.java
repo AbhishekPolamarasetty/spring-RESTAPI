@@ -33,27 +33,38 @@ public class AirportServiceImplementation implements AirportService{
 	
 	@Override
 	public String createAirport(Airport airport) {
-		   if (airportRepository.existsById(airport.getIATACODE())) {
-			   logger.error("Airport is already Exists");
+	    try {
+	        if (airportRepository.existsById(airport.getIATACODE())) {
+	            logger.error("Airport is already Exists");
 	            throw new ResourceConflictException("Airport with IATA code already exists");
 	        }
 
-	        // Create the airport as it doesn't exist
 	        logger.info("Creating airport...");
 	        airportRepository.save(airport);
 	        return "Success";
+	    } catch (ResourceConflictException ex) {
+	        logger.error("Error occurred: " + ex.getMessage());
+	        throw ex;
+	    }
 	}
+
 	
 
 	@Override
 	public Airport getAirport(String IATACODE) {
-		if (airportRepository.findById(IATACODE).isEmpty()) {
-	        logger.error("Requested airport does not exist for IATACODE: {}", IATACODE);
-	        throw new AirportNotFoundException("Requested airport does not exist");
-	    }
-
-	    logger.info("Fetching specific airport from the repository.");
-	    return airportRepository.findById(IATACODE).get();
+		try {
+			if (airportRepository.findById(IATACODE).isEmpty()) {
+		        logger.error("Requested airport does not exist for IATACODE: {}", IATACODE);
+		        throw new AirportNotFoundException("Requested airport does not exist");
+		    }
+			logger.info("Fetching specific airport from the repository.");
+		    return airportRepository.findById(IATACODE).get();
+            } catch (AirportNotFoundException ex) {
+            	logger.error("AirportNotFoundException occurred: " + ex.getMessage());
+            	throw ex;
+            }
+		
+	    
 	}
 	
 	@Override
@@ -65,9 +76,18 @@ public class AirportServiceImplementation implements AirportService{
 	
 	@Override
 	public String deleteAirport(String airportIATACODE) {
-		logger.info("deleting specific airport from the repository.");
-		airportRepository.deleteById(airportIATACODE);
-		return null;
-	}
-	
+	    try {
+	        if (airportRepository.existsById(airportIATACODE)) {
+	            logger.info("Deleting specific airport from the repository.");
+	            airportRepository.deleteById(airportIATACODE);
+	            return "Airport deleted successfully";
+	        } else {
+	            logger.error("Airport with IATA code does not exist");
+	            throw new AirportNotFoundException("Airport with IATA code does not exist");
+	        }
+	    } catch (AirportNotFoundException ex) {
+	        logger.error("Error occurred: " + ex.getMessage());
+	        throw ex;
+	    }
+	}	
 }
