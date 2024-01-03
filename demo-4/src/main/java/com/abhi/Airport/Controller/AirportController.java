@@ -1,7 +1,6 @@
 package com.abhi.Airport.Controller;
 
 import java.util.List;
-
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +21,7 @@ import com.abhi.Airport.Service.AirportService;
 //import ch.qos.logback.classic.Logger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 @RestController
 @RequestMapping("/airports")
 public class AirportController{
