@@ -38,5 +38,10 @@
     <fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
     <fullyQualifiedTypeName name="ch.qos.logback.classic.Logger"/>
     <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
+    <fullyQualifiedTypeName name="com.abhi.Airport.Exception.ResourceConflictException"/>
     <fullyQualifiedTypeName name="com.abhi.Airport.Exception.AirportNotFoundException"/>
+    <fullyQualifiedTypeName name="com.abhi.Airport.Exception.AirportAlreadyExists"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
 </qualifiedTypeNameHistroy>

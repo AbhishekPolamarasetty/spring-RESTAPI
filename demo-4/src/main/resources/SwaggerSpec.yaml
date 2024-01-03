@@ -1,63 +1,34 @@
 swagger: "2.0"
 info:
-  description: "Airport Information API"
-  version: "1.0.0"
-  title: "Airports API"
-  contact:
-    email: "abhishek_pola@thbs.com"
-host: "localhost:11478"
-schemes:
-  - "http"
-consumes:
-  - application/json
+  title: Airport
+  version: v0
+basePath: /api/v1  # Base path for all API endpoints
 produces:
-  - application/json
+  - application/json  # Response content type
+consumes:
+  - application/json  # Request content type
 paths:
-  /airports:
+  /airport/{IATACODE}:
     get:
-      summary: "Get all airports"
-      description: "Retrieve a list of all airports"
-      responses:
-        200:
-          description: "Successful operation"
-          schema:
-            type: "object"
-            properties:
-              airports:
-                type: "array"
-                items:
-                  $ref: "#/definitions/Airport"
-    post:
-      summary: "Create a new airport"
-      description: "Add a new airport to the list"
+      tags:
+        - airport-controller
+      operationId: getAirportDetails
       parameters:
-        - name: "Airport"
-          in: "body"
+        - name: IATACODE
+          in: path
           required: true
-          schema:
-            $ref: "#/definitions/Airport"
+          type: string
       responses:
-        201:
-          description: "Airport created successfully"
-  /airports/{airportId}:
-    get:
-      summary: "Get airport by ID"
-      description: "Retrieve details of a specific airport"
-      parameters:
-        - name: "airportId"
-          in: "path"
-          required: true
-          type: "string"
-      responses:
-        200:
-          description: "Successful operation"
+        '200':
+          description: OK
           schema:
-            $ref: "#/definitions/Airport"
+            type: object
     put:
-      summary: "Update airport by ID"
-      description: "Modify details of a specific airport"
+      tags:
+        - airport-controller
+      operationId: updateAirportDetails
       parameters:
-        - name: "airportId"
+        - name: "IATACODE"
           in: "path"
           required: true
           type: "string"
@@ -70,16 +41,50 @@ paths:
         200:
           description: "Airport updated successfully"
     delete:
-      summary: "Delete airport by ID"
-      description: "Remove a specific airport from the list"
+      tags:
+        - airport-controller
+      operationId: deleteAirportDetails
       parameters:
-        - name: "airportId"
-          in: "path"
+        - name: IATACODE
+          in: path
           required: true
-          type: "string"
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: object
+  /airport:
+    post:
+      tags:
+        - airport-controller
+      operationId: createAirportDetails
+      parameters:
+        - name: "Airport"
+          in: "body"
+          required: true
+          schema:
+            $ref: "#/definitions/Airport"
       responses:
         200:
-          description: "Airport deleted successfully"
+          description: "Airport created successfully"
+          
+    get:
+      tags:
+        - airport-controller
+      operationId: getAllAirportDetails
+      responses:
+        200:
+          description: "Successful operation"
+          schema:
+            type: "object"
+            properties:
+              airports:
+                type: "array"
+                items:
+                  $ref: "#/definitions/Airport"
+              
+              
 definitions:
   Airport:
     type: "object"
@@ -93,3 +98,4 @@ definitions:
       city_name:
         type: "string"
         description: "Name of the city where the airport is located"
+

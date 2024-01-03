@@ -4,10 +4,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="Airport_details")
 public class Airport {
 	
@@ -21,13 +25,6 @@ public class Airport {
 	@JsonProperty("city_name")
 	private String cityName;
 	
-	public Airport() {
-		
-	}
-	
-	public Airport(String IATACODE,String airportName,String cityName) {
-		this.IATACODE = IATACODE;
-		this.airportName = airportName;
-		this.cityName = cityName;
-	}
+
+
 }
