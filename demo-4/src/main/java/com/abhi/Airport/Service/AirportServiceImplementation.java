@@ -52,18 +52,17 @@ public class AirportServiceImplementation implements AirportService{
 
 	@Override
 	public Airport getAirport(String IATACODE) {
-		try {
-			if (airportRepository.findById(IATACODE).isEmpty()) {
+	
+			if (!airportRepository.findById(IATACODE).isEmpty()) {
+				logger.info("Fetching specific airport from the repository.");
+				return airportRepository.findById(IATACODE).get();
+		    }
+			else {
+			
 		        logger.error("Requested airport does not exist for IATACODE: {}", IATACODE);
 		        throw new AirportNotFoundException("Requested airport does not exist");
-		    }
-			logger.info("Fetching specific airport from the repository.");
-		    return airportRepository.findById(IATACODE).get();
-            } catch (AirportNotFoundException ex) {
-            	logger.error("AirportNotFoundException occurred: " + ex.getMessage());
-            	throw ex;
-            }
-		
+			}
+		   
 	    
 	}
 	
@@ -76,18 +75,16 @@ public class AirportServiceImplementation implements AirportService{
 	
 	@Override
 	public String deleteAirport(String airportIATACODE) {
-	    try {
+		
 	        if (airportRepository.existsById(airportIATACODE)) {
 	            logger.info("Deleting specific airport from the repository.");
 	            airportRepository.deleteById(airportIATACODE);
 	            return "Airport deleted successfully";
-	        } else {
+	        } 
+	        else {
 	            logger.error("Airport with IATA code does not exist");
 	            throw new AirportNotFoundException("Airport with IATA code does not exist");
 	        }
-	    } catch (AirportNotFoundException ex) {
-	        logger.error("Error occurred: " + ex.getMessage());
-	        throw ex;
-	    }
+	 
 	}	
 }

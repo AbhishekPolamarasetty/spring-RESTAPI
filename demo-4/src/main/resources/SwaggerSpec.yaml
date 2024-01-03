@@ -37,7 +37,7 @@ paths:
           schema:
             $ref: "#/definitions/Airport"
       responses:
-        200:
+        201:
           description: "Airport created successfully"
   /airports/{airportId}:
     get:
