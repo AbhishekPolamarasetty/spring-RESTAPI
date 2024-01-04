@@ -1,0 +1,17 @@
+#spring:
+#  server:
+#    port: 12345
+#
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/cloud_vendor?useSSL=false
+#    username: root
+#    password: root
+#
+#  # JPA settings
+#  jpa:
+#    hibernate:
+#      ddl-auto: create # 'update' can also be used
+
+# Additional settings
+# Add 'spring.jpa.show-sql: true' to enable SQL logging
+# Add other properties as needed

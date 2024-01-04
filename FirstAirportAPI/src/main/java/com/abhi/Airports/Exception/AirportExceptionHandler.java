@@ -1,0 +1,20 @@
+package com.abhi.Airports.Exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+@ControllerAdvice
+public class AirportExceptionHandler {
+	@ExceptionHandler(value = {AirportNotFoundException.class})
+	public ResponseEntity<Object> handleCloudVendorNotFoundException (AirportNotFoundException cloudVendorNotFoundException){
+		AirportException cloudVendorException = new AirportException(
+				cloudVendorNotFoundException.getMessage(),
+				cloudVendorNotFoundException.getCause(),
+				HttpStatus.NOT_FOUND
+				);
+				return new ResponseEntity<>(cloudVendorException, HttpStatus.NOT_FOUND);
+				
+	}
+}
