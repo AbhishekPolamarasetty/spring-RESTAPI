@@ -66,9 +66,8 @@ paths:
           schema:
             $ref: "#/definitions/Airport"
       responses:
-        200:
+        201:
           description: "Airport created successfully"
-          
     get:
       tags:
         - airport-controller
@@ -83,8 +82,7 @@ paths:
                 type: "array"
                 items:
                   $ref: "#/definitions/Airport"
-              
-              
+
 definitions:
   Airport:
     type: "object"
@@ -98,4 +96,3 @@ definitions:
       city_name:
         type: "string"
         description: "Name of the city where the airport is located"
-

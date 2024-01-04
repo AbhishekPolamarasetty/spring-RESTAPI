@@ -8,12 +8,8 @@ public class AirportAlreadyExists extends RuntimeException {
 	public AirportAlreadyExists(String message) {
 		super(message);
 		this.message=message;
-		// TODO Auto-generated constructor stub
 	}
-	public AirportAlreadyExists() {
-		// TODO Auto-generated constructor stub
-	}
-   
+	
 	public HashMap<String,String> getinfo(String status){
 		 HashMap<String,String> hmap= new HashMap<>();
 				 hmap.put("message", message);

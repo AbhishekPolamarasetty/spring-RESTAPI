@@ -1,7 +1,7 @@
 package com.abhi.Airport.Controller;
 
 import java.util.List;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,13 +19,16 @@ import com.abhi.Airport.Exception.AirportAlreadyExists;
 import com.abhi.Airport.Exception.AirportNotFoundException;
 import com.abhi.Airport.Service.AirportService;
 
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
+
+//import org.slf4j.Logger;
 
 @RestController
 @RequestMapping("api/v1")
+@Slf4j
 public class AirportController{
 	
-	private static final Logger logger = LoggerFactory.getLogger(AirportController.class);
+//	private static final Logger logger = LoggerFactory.getLogger(AirportController.class);
 	
 	@Autowired
 	private AirportService airportService;
@@ -33,13 +36,13 @@ public class AirportController{
 	
 	@GetMapping("/airports")
 	public List<Airport> getAllAirportDetails() {
-		logger.info("Fetching all airport details.");
+		log.info("Fetching all airport details.");
 		return airportService.getAllAirports();
 	}
 	
-	@PostMapping("/airport")
+	@PostMapping("/airports")
 	public ResponseEntity<?> createAirportDetails(@RequestBody Airport airport) {
-	    logger.info("creating all airport details.");
+	    log.info("creating all airport details.");
 	    try {
 	    	airportService.createAirport(airport);
 		    return ResponseEntity.status(HttpStatus.CREATED).body("Airport created successfully");
@@ -53,7 +56,7 @@ public class AirportController{
 	
 	@GetMapping("airport/{IATACODE}")
 	public ResponseEntity<?> getAirportDetails(@PathVariable("IATACODE") String IATACODE ) {
-		logger.info("Fetching specific airport details.");
+		log.info("Fetching specific airport details.");
 		try {
 			return ResponseEntity.ok(airportService.getAirport(IATACODE));
 		}
@@ -62,17 +65,22 @@ public class AirportController{
 		}
 
 	}
-    
+
 	@PutMapping("airport/{IATACODE}")
-	public String updateAirportDetails(@RequestBody Airport airport) {
-		logger.info("updating specific airport details.");
-		airportService.updateAirport(airport);
-		return "Airport updated successfully";
+	public ResponseEntity <?> updateAirportDetails(@PathVariable ("IATACODE") String IATACODE, @RequestBody Airport airport) {
+		log.info("updating specific airport details.");
+		try {
+			return ResponseEntity.ok(airportService.updateAirport(IATACODE,airport));
+		}
+		catch (AirportNotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMes("404"));
+		}
 	}
+	
 	
 	@DeleteMapping("airport/{IATACODE}")
 	public ResponseEntity<?> deleteAirportDetails(@PathVariable("IATACODE") String IATACODE) {
-		logger.info("deleting specific airport details.");
+		log.info("deleting specific airport details.");
 		try {
 			return ResponseEntity.ok(airportService.deleteAirport(IATACODE));
 		}
