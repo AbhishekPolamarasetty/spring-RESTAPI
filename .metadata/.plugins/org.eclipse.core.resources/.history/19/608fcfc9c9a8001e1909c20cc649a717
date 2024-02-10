@@ -1,5 +1,0 @@
-package com.abhi.Airport.Controller;
-
-public class CustomErrorController {
-
-}

@@ -1,5 +1,0 @@
-package com.restwithmysql.Exception;
-
-public class CloudVendorExceptionHandler {
-
-}

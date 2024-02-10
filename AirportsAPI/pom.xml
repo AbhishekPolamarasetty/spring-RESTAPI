@@ -67,7 +67,9 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			
 		</plugins>
+		<finalName>your-application</finalName>
 	</build>
 
 </project>
